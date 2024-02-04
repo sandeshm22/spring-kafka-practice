@@ -1,0 +1,43 @@
+
+spring:
+  cloud:
+    function:
+      definition:
+        #processMessage;
+        consumeMessage;
+    stream:
+      bindings:
+        #processMessage-in-0:
+        #  destination: testprocess.even
+        #processMessage-in-1:
+        #  destination: testprocess.odd
+        #processMessage-out-0:
+        #  destination: testprocess.combined
+        consumeMessage-in-0:
+          destination: request
+      kafka:
+        binder:
+          brokers: localhost:9092
+          autoCreateTopics: true
+        streams:
+          binder:
+            configuration:
+              default:
+                value:
+                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                key:
+                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+        functions:
+          processMessage:
+            applicationId: processMessage-1
+          consumeMessage:
+            applicationId: consumeMessage-2
+
+  kafka:
+    streams:
+      application-id: ${user.name}
+      replication-factor: 1
+      properties:
+        state:
+          dir: D:/dev/temp/kafka-streams
+#logging.level.org.apache.kafka.streams.processor: DEBUG
