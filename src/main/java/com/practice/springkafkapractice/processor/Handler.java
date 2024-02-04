@@ -3,11 +3,8 @@ package com.practice.springkafkapractice.processor;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.kafka.common.serialization.Serdes;
-import org.apache.kafka.common.utils.Bytes;
 import org.apache.kafka.streams.kstream.*;
-import org.apache.kafka.streams.state.KeyValueStore;
 import org.apache.kafka.streams.state.Stores;
-import org.apache.kafka.streams.state.WindowStore;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
@@ -30,8 +27,8 @@ public class Handler {
     public Consumer<KStream<String, String>> consumeMessage() {
         var store = Stores.persistentTimestampedWindowStore(
                 "some-state-store",
-                Duration.ofMinutes(5),
-                Duration.ofMinutes(2),
+                Duration.ofMinutes(1),
+                Duration.ofMinutes(1),
                 false);
         var materialized = Materialized
                 .<String, Long>as(store)
