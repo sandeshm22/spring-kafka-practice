@@ -25,25 +25,15 @@ public class KafkaProducerConsumer {
         sendData();
         sendData();
         sendData();
-        sendData();
-        sendData();
-        sendData();
-        sendData();
-        sendData();
-        sendData();
-        sendData();
-        sendData();
-        sendData();
-
     }
 
     private void sendData() {
         String correlationId = UUID.randomUUID().toString();
-        ProducerRecord<String, String> requestFile = new ProducerRecord<>("request", correlationId,  data[0]);
-        ProducerRecord<String, String> requestFile1= new ProducerRecord<>("request", UUID.randomUUID().toString(), data[1]);
-        ProducerRecord<String, String> requestFile2 = new ProducerRecord<>("request", UUID.randomUUID().toString(), data[2]);
-        ProducerRecord<String, String> requestFile3 = new ProducerRecord<>("request", UUID.randomUUID().toString(), data[3]);
-        ProducerRecord<String, String> requestFile4 = new ProducerRecord<>("request", UUID.randomUUID().toString(), data[4]);
+        ProducerRecord<String, String> requestFile = new ProducerRecord<>("request1", correlationId,  data[0]);
+        ProducerRecord<String, String> requestFile1= new ProducerRecord<>("request1", UUID.randomUUID().toString(), data[1]);
+        ProducerRecord<String, String> requestFile2 = new ProducerRecord<>("request1", UUID.randomUUID().toString(), data[2]);
+        ProducerRecord<String, String> requestFile3 = new ProducerRecord<>("request1", UUID.randomUUID().toString(), data[3]);
+        ProducerRecord<String, String> requestFile4 = new ProducerRecord<>("request1", UUID.randomUUID().toString(), data[4]);
         template.send(requestFile);
         template.send(requestFile1);
         template.send(requestFile2);

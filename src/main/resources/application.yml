@@ -14,7 +14,7 @@ spring:
         #processMessage-out-0:
         #  destination: testprocess.combined
         consumeMessage-in-0:
-          destination: request
+          destination: request1
       kafka:
         binder:
           brokers: localhost:9092
